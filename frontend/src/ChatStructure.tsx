@@ -21,9 +21,17 @@ interface Case {
 
 const ChatsStructure = () => {
   const [cases, setCases] = useState<Case[]>([]);
+  const [startDate, setStartDate] = useState<string | null>(null);
+  const [endDate, setEndDate] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("https://admindev.inceptia.ai/api/v1/inbound-case/?bot=28", {
+    let url = "https://admindev.inceptia.ai/api/v1/inbound-case/?bot=28";
+
+    if (startDate && endDate) {
+      url += `&local_updated__date__gte=${startDate}&local_updated__date__lte=${endDate}`;
+    }
+
+    fetch(url, {
       headers: {
         Authorization:
           "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0MSwidXNlcm5hbWUiOiJyZWFjdGRldkBpbmljZXB0aWEuYWkiLCJleHAiOjE3MTYzMTQxNjAsImVtYWlsIjoicmVhY3RkZXZAaW5pY2VwdGlhLmFpIiwib3JpZ19pYXQiOjE3MTYyMjc3NjB9.5aEPu5RxqhUcjS81K4Gim1Z0LfnCcpDE2HoHoNNWOlA",
@@ -32,17 +40,29 @@ const ChatsStructure = () => {
       .then((response) => response.json())
       .then((data) => setCases(data.results))
       .catch((error) => console.error("Error fetching cases:", error));
-  }, []);
+  }, [startDate, endDate]);
 
   useEffect(() => {
     flatpickr("#start-date", {
       dateFormat: "Y-m-d",
+      onChange: (selectedDates) => {
+        setStartDate(selectedDates[0] ? selectedDates[0].toISOString() : null);
+      },
     });
 
     flatpickr("#end-date", {
       dateFormat: "Y-m-d",
+      onChange: (selectedDates) => {
+        setEndDate(selectedDates[0] ? selectedDates[0].toISOString() : null);
+      },
     });
   }, []);
+
+  const filteredCases = cases.filter((singleCase) => {
+    if (!startDate || !endDate) return true;
+    const caseDate = new Date(singleCase.last_updated);
+    return caseDate >= new Date(startDate) && caseDate <= new Date(endDate);
+  });
 
   return (
     <div className="list-structure flex overflow-hidden h-[90vh]">
@@ -162,7 +182,10 @@ const ChatsStructure = () => {
           </thead>
           <tbody className="border border-black">
             {cases.map((singleCase) => (
-              <tr key={singleCase.id} className="h-auto hover:bg-black/80 hover:text-white cursor-pointer">
+              <tr
+                key={singleCase.id}
+                className="h-auto hover:bg-black/80 hover:text-white cursor-pointer"
+              >
                 <td className="py-2 px-4 border-b">
                   {singleCase.last_updated}
                 </td>
@@ -193,4 +216,3 @@ const ChatsStructure = () => {
 };
 
 export default ChatsStructure;
-
