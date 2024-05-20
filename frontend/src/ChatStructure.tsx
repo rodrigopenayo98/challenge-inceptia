@@ -1,6 +1,38 @@
+import React, { useState, useEffect } from "react";
 import ClientList from "./ClientList";
 
+interface Case {
+  id: number;
+  last_updated: string;
+  case_uuid: string;
+  phone: number;
+  extra_metadata: {
+    dni: string;
+    grupo: string;
+    orden: string;
+  };
+  case_duration: string;
+  case_result: {
+    name: string;
+  };
+}
+
 const ChatsStructure = () => {
+  const [cases, setCases] = useState<Case[]>([]);
+
+  useEffect(() => {
+    // Llamada a la API para obtener los casos
+    fetch("https://admindev.inceptia.ai/api/v1/inbound-case/?bot=28", {
+      headers: {
+        Authorization:
+          "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0MSwidXNlcm5hbWUiOiJyZWFjdGRldkBpbmljZXB0aWEuYWkiLCJleHAiOjE3MTYzMTQxNjAsImVtYWlsIjoicmVhY3RkZXZAaW5pY2VwdGlhLmFpIiwib3JpZ19pYXQiOjE3MTYyMjc3NjB9.5aEPu5RxqhUcjS81K4Gim1Z0LfnCcpDE2HoHoNNWOlA",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setCases(data.results))
+      .catch((error) => console.error("Error fetching cases:", error));
+  }, []);
+
   return (
     <div className="list-structure flex">
       <div className="w-1/4 border-r flex justify-center py-6 bg-grey/30 h-[90vh]">
@@ -63,84 +95,49 @@ const ChatsStructure = () => {
             </li>
           </ul>
         </nav>
-        <div className="m-6">
-          <table className="min-w-full bg-white border border-gray-200">
-            <thead>
-              <tr className="bg-gray-200 text-left">
-                <th className="py-2 px-4 border-b">Gestionado</th>
-                <th className="py-2 px-4 border-b">ID Caso</th>
-                <th className="py-2 px-4 border-b">Teléfono</th>
-                <th className="py-2 px-4 border-b">Dni</th>
-                <th className="py-2 px-4 border-b">Grupo</th>
-                <th className="py-2 px-4 border-b">Orden</th>
-                <th className="py-2 px-4 border-b">Llamada</th>
-                <th className="py-2 px-4 border-b">Estado</th>
+        <table className="min-w-full bg-white border border-gray-200">
+          <thead>
+            <tr className="bg-gray-200 text-left">
+              <th className="py-2 px-4 border-b">Gestionado</th>
+              <th className="py-2 px-4 border-b">ID Caso</th>
+              <th className="py-2 px-4 border-b">Teléfono</th>
+              <th className="py-2 px-4 border-b">Dni</th>
+              <th className="py-2 px-4 border-b">Grupo</th>
+              <th className="py-2 px-4 border-b">Orden</th>
+              <th className="py-2 px-4 border-b">Llamada</th>
+              <th className="py-2 px-4 border-b">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cases.map((singleCase) => (
+              <tr key={singleCase.id}>
+                <td className="py-2 px-4 border-b">
+                  {singleCase.last_updated}
+                </td>
+                <td className="py-2 px-4 border-b">{singleCase.case_uuid}</td>
+                <td className="py-2 px-4 border-b">{singleCase.phone}</td>
+                <td className="py-2 px-4 border-b">
+                  {singleCase.extra_metadata.dni}
+                </td>
+                <td className="py-2 px-4 border-b">
+                  {singleCase.extra_metadata.grupo}
+                </td>
+                <td className="py-2 px-4 border-b">
+                  {singleCase.extra_metadata.orden}
+                </td>
+                <td className="py-2 px-4 border-b">
+                  {singleCase.case_duration}
+                </td>
+                <td className="py-2 px-4 border-b">
+                  {singleCase.case_result.name}
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              <tr>
-                {/* Fecha y Hora Gestionado*/}
-                <td className="py-2 px-4 border-b">03/11/2021 13:41:40</td>
-                {/* ID Caso */}
-                <td className="py-2 px-4 border-b">6</td>
-                {/* Telefono */}
-                <td className="py-2 px-4 border-b">541140754716</td>
-                {/* Dni */}
-                <td className="py-2 px-4 border-b">33487562</td>
-                {/* Grupo */}
-                <td className="py-2 px-4 border-b">4875</td>
-                {/* Orden */}
-                <td className="py-2 px-4 border-b">726</td>
-                {/* Llamada */}
-                <td className="py-2 px-4 border-b">00:01.07</td>
-                {/* Estado */}
-                <td className="py-2 px-4 border-b">CORTÓ CLIENTE - ORDEN IDENTIFICADA</td>
-              </tr>
-              <tr>
-                {/* Fecha y Hora Gestionado*/}
-                <td className="py-2 px-4 border-b">03/11/2021 13:41:40</td>
-                {/* ID Caso */}
-                <td className="py-2 px-4 border-b">6</td>
-                {/* Telefono */}
-                <td className="py-2 px-4 border-b">541140754716</td>
-                {/* Dni */}
-                <td className="py-2 px-4 border-b">33487562</td>
-                {/* Grupo */}
-                <td className="py-2 px-4 border-b">4875</td>
-                {/* Orden */}
-                <td className="py-2 px-4 border-b">726</td>
-                {/* Llamada */}
-                <td className="py-2 px-4 border-b">00:01.07</td>
-                {/* Estado */}
-                <td className="py-2 px-4 border-b">CORTÓ CLIENTE - ORDEN IDENTIFICADA</td>
-              </tr>
-              <tr>
-                {/* Fecha y Hora Gestionado*/}
-                <td className="py-2 px-4 border-b">03/11/2021 13:41:40</td>
-                {/* ID Caso */}
-                <td className="py-2 px-4 border-b">6</td>
-                {/* Telefono */}
-                <td className="py-2 px-4 border-b">541140754716</td>
-                {/* Dni */}
-                <td className="py-2 px-4 border-b">33487562</td>
-                {/* Grupo */}
-                <td className="py-2 px-4 border-b">4875</td>
-                {/* Orden */}
-                <td className="py-2 px-4 border-b">726</td>
-                {/* Llamada */}
-                <td className="py-2 px-4 border-b">00:01.07</td>
-                {/* Estado */}
-                <td className="py-2 px-4 border-b">CORTÓ CLIENTE - ORDEN IDENTIFICADA</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
 };
 
 export default ChatsStructure;
-
-
-
