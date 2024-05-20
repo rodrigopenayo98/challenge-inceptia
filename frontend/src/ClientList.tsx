@@ -14,7 +14,7 @@ interface Client {
 }
 
 const ClientList = () => {
-  const [clients, setClients] = useState<Client[]>([]); // Proporcionar un tipo explícito para clients
+  const [clients, setClients] = useState<Client[]>([]);
 
   useEffect(() => {
     const fetchClients = async () => {
@@ -34,13 +34,13 @@ const ClientList = () => {
   }, []);
 
   return (
-    <div className="border h-[85vh] bg-white p-3">
+    <div className="border h-[85vh] bg-white p-3 rounded-xl">
       {clients.length === 0 ? (
         <p>No clients found.</p>
       ) : (
         <ul className="border border-black w-64 p-3 bg-grey hover:bg-black/60 cursor-pointer rounded-md">
           {clients.map((client) => (
-            <li key={client.id}>{client.name}</li>
+            <li className="hover:text-white" key={client.id}>{client.name}</li>
           ))}
         </ul>
       )}

@@ -23,7 +23,6 @@ const ChatsStructure = () => {
   const [cases, setCases] = useState<Case[]>([]);
 
   useEffect(() => {
-    // Llamada a la API para obtener los casos
     fetch("https://admindev.inceptia.ai/api/v1/inbound-case/?bot=28", {
       headers: {
         Authorization:
@@ -36,7 +35,6 @@ const ChatsStructure = () => {
   }, []);
 
   useEffect(() => {
-    // Inicialización de Flatpickr para los selectores de fecha
     flatpickr("#start-date", {
       dateFormat: "Y-m-d",
     });
@@ -164,7 +162,7 @@ const ChatsStructure = () => {
           </thead>
           <tbody className="border border-black">
             {cases.map((singleCase) => (
-              <tr key={singleCase.id} className="h-auto">
+              <tr key={singleCase.id} className="h-auto hover:bg-black/80 hover:text-white cursor-pointer">
                 <td className="py-2 px-4 border-b">
                   {singleCase.last_updated}
                 </td>
