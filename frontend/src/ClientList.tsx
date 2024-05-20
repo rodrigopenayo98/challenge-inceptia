@@ -38,7 +38,7 @@ const ClientList = () => {
       {clients.length === 0 ? (
         <p>No clients found.</p>
       ) : (
-        <ul className="border border-black w-64 p-3 bg-grey hover:bg-black/60 cursor-pointer">
+        <ul className="border border-black w-64 p-3 bg-grey hover:bg-black/60 cursor-pointer rounded-md">
           {clients.map((client) => (
             <li key={client.id}>{client.name}</li>
           ))}

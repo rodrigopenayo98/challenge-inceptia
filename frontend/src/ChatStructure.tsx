@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ClientList from "./ClientList";
+import flatpickr from "flatpickr";
+import "flatpickr/dist/flatpickr.min.css";
 
 interface Case {
   id: number;
@@ -31,6 +33,17 @@ const ChatsStructure = () => {
       .then((response) => response.json())
       .then((data) => setCases(data.results))
       .catch((error) => console.error("Error fetching cases:", error));
+  }, []);
+
+  useEffect(() => {
+    // Inicialización de Flatpickr para los selectores de fecha
+    flatpickr("#start-date", {
+      dateFormat: "Y-m-d",
+    });
+
+    flatpickr("#end-date", {
+      dateFormat: "Y-m-d",
+    });
   }, []);
 
   return (
@@ -73,6 +86,7 @@ const ChatsStructure = () => {
                   </svg>
                 </div>
                 <input
+                  id="start-date"
                   name="start"
                   type="text"
                   className="bg-black border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-black dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -93,9 +107,11 @@ const ChatsStructure = () => {
                   </svg>
                 </div>
                 <input
+                  id="end-date"
                   name="end"
                   type="text"
-                  className="bg-black border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-black dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-black border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-black dark:border-gray-600
+                  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Select date end"
                 />
               </div>
@@ -179,3 +195,4 @@ const ChatsStructure = () => {
 };
 
 export default ChatsStructure;
+

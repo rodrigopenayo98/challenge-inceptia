@@ -8,6 +8,8 @@
     "babel-polyfill": "^6.26.0",
     "cross-env": "^7.0.3",
     "express": "^4.19.2",
+    "flatpickr": "^4.6.13",
+    "flowbite-datepicker": "^1.2.6",
     "node-sass": "^9.0.0",
     "react": "^18.3.1",
     "react-app-polyfill": "^0.2.2",
