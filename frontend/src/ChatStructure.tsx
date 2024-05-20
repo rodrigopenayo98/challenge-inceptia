@@ -34,11 +34,11 @@ const ChatsStructure = () => {
   }, []);
 
   return (
-    <div className="list-structure flex">
+    <div className="list-structure flex overflow-hidden h-[90vh]">
       <div className="w-1/4 border-r flex justify-center py-6 bg-grey/30 h-[90vh]">
         <ClientList />
       </div>
-      <div className="w-full">
+      <div className="w-full overflow-y-auto ovwerflow-hidden">
         <div className="flex justify-between bg-grey/20 h-16">
           <div className="flex text-lg h-16 mx-12 items-center">
             <h3 className="">Detalle</h3>
@@ -65,7 +65,7 @@ const ChatsStructure = () => {
           </div>
         </div>
         <nav className="flex py-6 px-12 text-xs w-auto justify-between">
-          <ul className="flex space-x-4 h-10 items-center">
+          <ul className="flex space-x-4 h-2 items-center">
             <li className="font-bold cursor-pointer hover:bg-grey/70 hover:text-white h-12 flex items-center px-2 rounded">
               TODOS
             </li>
@@ -108,9 +108,9 @@ const ChatsStructure = () => {
               <th className="py-2 px-4 border-b">Estado</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="border border-black">
             {cases.map((singleCase) => (
-              <tr key={singleCase.id}>
+              <tr key={singleCase.id} className="h-auto">
                 <td className="py-2 px-4 border-b">
                   {singleCase.last_updated}
                 </td>
