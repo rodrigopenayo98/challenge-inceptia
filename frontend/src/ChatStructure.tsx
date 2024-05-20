@@ -1,10 +1,10 @@
-import React from "react";
+import ClientList from "./ClientList";
 
-const ListStructure = () => {
+const ChatsStructure = () => {
   return (
     <div className="list-structure flex">
       <div className="w-1/4 border-r flex justify-center py-6 bg-grey/30 h-[90vh]">
-        <h3 className="text-black">List</h3>
+        <ClientList />
       </div>
       <div className="w-full">
         <div className="flex justify-between bg-grey/20 h-16">
@@ -79,34 +79,58 @@ const ListStructure = () => {
             </thead>
             <tbody>
               <tr>
-                <td className="py-2 px-4 border-b">Dato 1</td>
-                <td className="py-2 px-4 border-b">Dato 2</td>
-                <td className="py-2 px-4 border-b">Dato 3</td>
-                <td className="py-2 px-4 border-b">Dato 4</td>
-                <td className="py-2 px-4 border-b">Dato 5</td>
-                <td className="py-2 px-4 border-b">Dato 6</td>
-                <td className="py-2 px-4 border-b">Dato 7</td>
-                <td className="py-2 px-4 border-b">Dato 8</td>
-              </tr>
-              <tr className="bg-gray-50">
-                <td className="py-2 px-4 border-b">Dato 10</td>
-                <td className="py-2 px-4 border-b">Dato 11</td>
-                <td className="py-2 px-4 border-b">Dato 12</td>
-                <td className="py-2 px-4 border-b">Dato 13</td>
-                <td className="py-2 px-4 border-b">Dato 14</td>
-                <td className="py-2 px-4 border-b">Dato 15</td>
-                <td className="py-2 px-4 border-b">Dato 16</td>
-                <td className="py-2 px-4 border-b">Dato 17</td>
+                {/* Fecha y Hora Gestionado*/}
+                <td className="py-2 px-4 border-b">03/11/2021 13:41:40</td>
+                {/* ID Caso */}
+                <td className="py-2 px-4 border-b">6</td>
+                {/* Telefono */}
+                <td className="py-2 px-4 border-b">541140754716</td>
+                {/* Dni */}
+                <td className="py-2 px-4 border-b">33487562</td>
+                {/* Grupo */}
+                <td className="py-2 px-4 border-b">4875</td>
+                {/* Orden */}
+                <td className="py-2 px-4 border-b">726</td>
+                {/* Llamada */}
+                <td className="py-2 px-4 border-b">00:01.07</td>
+                {/* Estado */}
+                <td className="py-2 px-4 border-b">CORTÓ CLIENTE - ORDEN IDENTIFICADA</td>
               </tr>
               <tr>
-                <td className="py-2 px-4 border-b">Dato 18</td>
-                <td className="py-2 px-4 border-b">Dato 19</td>
-                <td className="py-2 px-4 border-b">Dato 20</td>
-                <td className="py-2 px-4 border-b">Dato 21</td>
-                <td className="py-2 px-4 border-b">Dato 22</td>
-                <td className="py-2 px-4 border-b">Dato 23</td>
-                <td className="py-2 px-4 border-b">Dato 24</td>
-                <td className="py-2 px-4 border-b">Dato 25</td>
+                {/* Fecha y Hora Gestionado*/}
+                <td className="py-2 px-4 border-b">03/11/2021 13:41:40</td>
+                {/* ID Caso */}
+                <td className="py-2 px-4 border-b">6</td>
+                {/* Telefono */}
+                <td className="py-2 px-4 border-b">541140754716</td>
+                {/* Dni */}
+                <td className="py-2 px-4 border-b">33487562</td>
+                {/* Grupo */}
+                <td className="py-2 px-4 border-b">4875</td>
+                {/* Orden */}
+                <td className="py-2 px-4 border-b">726</td>
+                {/* Llamada */}
+                <td className="py-2 px-4 border-b">00:01.07</td>
+                {/* Estado */}
+                <td className="py-2 px-4 border-b">CORTÓ CLIENTE - ORDEN IDENTIFICADA</td>
+              </tr>
+              <tr>
+                {/* Fecha y Hora Gestionado*/}
+                <td className="py-2 px-4 border-b">03/11/2021 13:41:40</td>
+                {/* ID Caso */}
+                <td className="py-2 px-4 border-b">6</td>
+                {/* Telefono */}
+                <td className="py-2 px-4 border-b">541140754716</td>
+                {/* Dni */}
+                <td className="py-2 px-4 border-b">33487562</td>
+                {/* Grupo */}
+                <td className="py-2 px-4 border-b">4875</td>
+                {/* Orden */}
+                <td className="py-2 px-4 border-b">726</td>
+                {/* Llamada */}
+                <td className="py-2 px-4 border-b">00:01.07</td>
+                {/* Estado */}
+                <td className="py-2 px-4 border-b">CORTÓ CLIENTE - ORDEN IDENTIFICADA</td>
               </tr>
             </tbody>
           </table>
@@ -116,4 +140,7 @@ const ListStructure = () => {
   );
 };
 
-export default ListStructure;
+export default ChatsStructure;
+
+
+

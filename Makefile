@@ -1,9 +1,8 @@
 NODE=`docker-compose ps | grep npm | cut -d\  -f 1 | head -n 1`
 FILE=docker-compose.yml
-ENV_STAGE = ``
 
 #########
-#ACTIONS#
+# ACTIONS #
 #########
 
 build:
@@ -18,32 +17,37 @@ start:
 stop:
 	docker-compose -f $(FILE) stop
 
-
 clean: stop
 	docker-compose rm -f
 
 restart: clean build up
 	@echo "Restarted all containers"
 
-
 ########
-#SHELLS#
+# SHELLS #
 ########
 
+shell-backend:
+	docker exec -ti backend bash
 
-shell-app:
-	docker exec -ti $(NODE) bash
+shell-frontend:
+	docker exec -ti frontend bash
 
 ######
-#LOGS#
+# LOGS #
 ######
 
+log-backend:
+	docker-compose logs backend
 
+log-backend-live:
+	docker logs --tail 50 --follow --timestamps backend
 
-log-app:
-	docker-compose logs app
+log-frontend:
+	docker-compose logs frontend
 
-log-app-live:
-	docker logs --tail 50 --follow --timestamps $(NODE)
+log-frontend-live:
+	docker logs --tail 50 --follow --timestamps frontend
+
 
 

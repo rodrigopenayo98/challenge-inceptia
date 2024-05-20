@@ -1,17 +1,17 @@
 import React from "react";
-import Client from "./Client.tsx";
+import ClientContainer from "./ClientContainer.tsx";
 import Reports from "./Reports.tsx";
-import ListStructure from "./ListStructure.tsx";
+import ChatStructure from "./ChatStructure.tsx";
 
 const MainContainer = () => {
   return (
     <>
       <div className="bg-black w-full flex">
-        <Client />
+        <ClientContainer />
         <Reports />
       </div>
       <div>
-        <ListStructure />
+        <ChatStructure />
       </div>
     </>
   );

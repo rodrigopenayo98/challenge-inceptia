@@ -1,6 +1,6 @@
 import React from "react";
 
-const Client = () => {
+const ClientContainer = () => {
   return (
     <>
       <div className="client border-r w-1/5">
@@ -12,4 +12,4 @@ const Client = () => {
   );
 };
 
-export default Client;
+export default ClientContainer;
